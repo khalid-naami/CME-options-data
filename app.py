@@ -35,6 +35,18 @@ def initialize_app():
         layout=config.ui.layout,
         initial_sidebar_state="expanded"
     )
+    # --- Premium Social Links CSS ---
+    st.markdown("""
+    <style>
+    .do-banner{background:linear-gradient(135deg,#0d1a12 0%,#111 100%);border:1px solid rgba(0,255,136,0.2);border-radius:14px;padding:18px 22px;margin-bottom:16px;}
+    .do-banner a.do-title{color:#00ff88!important;font-weight:800;font-size:1.05rem;text-decoration:none;}
+    .do-banner .do-desc{color:#888;font-size:0.78rem;margin-top:4px;}
+    .social-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;}
+    .social-row a{display:flex;align-items:center;gap:6px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:8px;padding:6px 12px;text-decoration:none;color:#ccc!important;font-size:0.78rem;font-weight:500;transition:all 0.2s;}
+    .social-row a:hover{background:rgba(0,255,136,0.1);border-color:rgba(0,255,136,0.3);color:#00ff88!important;}
+    .social-row a img{width:16px;height:16px;object-fit:contain;}
+    </style>
+    """, unsafe_allow_html=True)
 
 def initialize_session_state():
     """Initialize session state variables"""
@@ -196,6 +208,24 @@ def main():
     # Render header
     StreamlitComponents.render_header()
     
+    # --- Sidebar: Dashboard Options + Social Links ---
+    st.sidebar.markdown("""
+    <div class="do-banner">
+        <div>📊 <a class="do-title" href="https://dashboardoptions.com/" target="_blank">Dashboard Options</a></div>
+        <div class="do-desc">A leading platform in financial market analysis</div>
+        <div class="social-row">
+            <a href="https://khalidnaami.com/" target="_blank"><img src="https://cdn.simpleicons.org/googlechrome/ffffff" />Khalid Naami</a>
+            <a href="https://github.com/khalid-naami" target="_blank"><img src="https://cdn.simpleicons.org/github/ffffff" />GitHub</a>
+            <a href="https://x.com/DashboardOption" target="_blank"><img src="https://cdn.simpleicons.org/x/ffffff" />𝕏</a>
+            <a href="https://www.linkedin.com/company/dashboard-options/" target="_blank"><img src="https://cdn.simpleicons.org/linkedin/ffffff" />LinkedIn</a>
+            <a href="https://www.instagram.com/dashboardoptions/" target="_blank"><img src="https://cdn.simpleicons.org/instagram/ffffff" />Instagram</a>
+            <a href="https://discord.gg/NRSzCYRzpJ" target="_blank"><img src="https://cdn.simpleicons.org/discord/ffffff" />Discord</a>
+            <a href="https://t.me/dashboardoptions" target="_blank"><img src="https://cdn.simpleicons.org/telegram/ffffff" />Telegram</a>
+            <a href="https://www.youtube.com/@DashboardOptions" target="_blank"><img src="https://cdn.simpleicons.org/youtube/ffffff" />YouTube</a>
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+    
     # Render sidebar and get inputs
     sidebar_inputs = StreamlitComponents.render_sidebar(st.session_state.rates_provider)
     symbol = sidebar_inputs['symbol']
@@ -319,3 +349,19 @@ def main():
 
 if __name__ == "__main__":
     main()
+    # --- Footer ---
+    st.markdown("""
+    <div style="text-align:center; padding:30px 0 10px; color:#555; font-size:0.78rem; margin-top:40px; border-top:1px solid #1a1a1a;">
+        <a href="https://dashboardoptions.com/" style="color:#00ff88; text-decoration:none; font-weight:700;">Dashboard Options</a> — A leading platform in financial market analysis<br>
+        <span style="margin-top:6px; display:inline-block;">
+            <a href="https://khalidnaami.com/" style="color:#666; text-decoration:none;">Khalid Naami</a> ·
+            <a href="https://github.com/khalid-naami" style="color:#666; text-decoration:none;">GitHub</a> ·
+            <a href="https://x.com/DashboardOption" style="color:#666; text-decoration:none;">𝕏</a> ·
+            <a href="https://www.linkedin.com/company/dashboard-options/" style="color:#666; text-decoration:none;">LinkedIn</a> ·
+            <a href="https://www.instagram.com/dashboardoptions/" style="color:#666; text-decoration:none;">Instagram</a> ·
+            <a href="https://discord.gg/NRSzCYRzpJ" style="color:#666; text-decoration:none;">Discord</a> ·
+            <a href="https://t.me/dashboardoptions" style="color:#666; text-decoration:none;">Telegram</a> ·
+            <a href="https://www.youtube.com/@DashboardOptions" style="color:#666; text-decoration:none;">YouTube</a>
+        </span>
+    </div>
+    """, unsafe_allow_html=True)
